@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RhodyWinds | Key Verification</title>
+    <style>
+        body { background: #0a0a0b; color: #ffb81c; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .key-panel { border: 2px solid #ffb81c; padding: 40px; text-align: center; background: #1a1a1a; box-shadow: 0 0 20px rgba(255, 184, 28, 0.2); }
+        input { background: #000; border: 1px solid #ffb81c; color: #ffb81c; padding: 10px; font-size: 1.2rem; text-align: center; width: 80%; }
+        button { background: #ffb81c; color: #000; border: none; padding: 10px 20px; margin-top: 20px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="key-panel">
+        <h2>LEVEL 5 KEY REQUIRED</h2>
+        <p>Identity Verified: Admin_Root</p>
+        <p>Please enter the 11-character hardware security key:</p>
+        <form action="/verify-key" method="POST">
+            <input type="text" name="access_key" placeholder="XX-XXXX-XXXX" required autofocus>
+            <br>
+            <button type="submit">UNLOCK GRID CONTROLS</button>
+        </form>
+    </div>
+</body>
+</html>

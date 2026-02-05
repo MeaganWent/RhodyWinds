@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RhodyWinds | Admin Terminal</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #f0f6fc;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .terminal {
+            width: 400px;
+            background: #161b22;
+            border: 2px solid #30363d;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+        .header {
+            color: #f85149; /* Red Alert */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+        }
+        label { display: block; margin-bottom: 5px; color: #8b949e; }
+        input {
+            width: 100%;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #58a6ff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background: #238636;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover { background: #2ea043; }
+        .system-msg { font-size: 0.75rem; color: #484f58; margin-top: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="terminal">
+    <div class="header">SYSTEM_OVERRIDE_GATE_01</div>
+    <p style="font-size: 0.9rem; margin-bottom: 20px;">Identity verification required for South Kingstown Grid Access.</p>
+    
+    <form action="/admin-login-phase1" method="POST">
+        <label>ADMIN_ID:</label>
+        <input type="text" name="username" placeholder="Username" required autofocus>
+        
+        <label>SECURE_PHRASE:</label>
+        <input type="password" name="password" placeholder="Password" required>
+        
+        <button type="submit">INITIATE HANDSHAKE</button>
+    </form>
+
+    <div class="system-msg">
+        NODE: SK-RI-09 <br>
+        SECURITY: ENCRYPTED-RSA-4096
+    </div>
+</div>
+
+</body>
+</html>
