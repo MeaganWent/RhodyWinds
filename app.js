@@ -16,47 +16,11 @@ app.use(session({
 // Mock User Database
 const users = { 'admin@example.com': 'password123' };
 
-// Routes
-const CTF_FLAG = "CTF{n0de_js_w3b_m4st3r_2026}";
 
 app.get('/', (req, res) => {
-    // Check if the session exists and the user is authenticated
-    if (req.session.loggedIn) {
-        res.send(`
-            <div style="font-family: sans-serif; text-align: center; margin-top: 50px;">
-                <h1>Access Granted</h1>
-                <p>Welcome back, Agent. Here is your secret flag:</p>
-                <h2 style="color: #d9534f; background: #f9f9f9; display: inline-block; padding: 10px; border: 2px solid #d9534f;">
-                    ${CTF_FLAG}
-                </h2>
-                <br><br>
-                <a href="/logout">Secure Logout</a>
-            </div>
-        `);
-    } else {
-        // If not logged in, show the standard public home page
-        res.sendFile(path.join(__dirname, 'index.html'));
-    }
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'));
-});
-
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    if (users[email] && users[email] === password) {
-        req.session.loggedIn = true;
-        res.redirect('/');
-    } else {
-        res.send('Invalid credentials. <a href="/login">Try again</a>');
-    }
-});
-
-app.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
-});
 
 // 1. The Admin Login Route (Phase 1)
 app.get('/control-room-hidden-alpha', (req, res) => {
