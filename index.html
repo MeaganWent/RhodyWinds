@@ -3,9 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RhodyWinds | Employee Portal</title>
+    <title>RhodyWinds | Maintenance Terminal</title>
+    <style>
+        :root {
+            --bg-blue: #1a2634;        /* Deep blue background */
+            --panel-blue: #243447;     /* Brighter blue for the container */
+            --electric-cyan: #00f2ff;  /* Cyan accent for the industrial glow */
+            --turbine-white: #e6f7ff;
+            --text-dim: #b0c4de;
+        }
+
+        body { 
+            background: var(--bg-blue); 
+            color: var(--text-dim); 
+            font-family: 'Courier New', Courier, monospace; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+            /* Subtle radial gradient to make it feel "brighter" in the center */
+            background: radial-gradient(circle, #2c3e50 0%, #1a2634 100%);
+        }
+
+        .container { 
+            border: 1px solid #3e5266; 
+            padding: 40px; 
+            border-radius: 8px; 
+            background: var(--panel-blue); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 15px rgba(0, 242, 255, 0.1); 
+            width: 400px; 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        /* Turbine Animation */
+        .turbine-box { position: absolute; top: 15px; right: 15px; opacity: 0.6; }
+        .blades {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--electric-cyan);
+            position: relative;
+            animation: spin 3s linear infinite; /* Spun up a bit faster */
+        }
+        .blade {
+            position: absolute; width: 3px; height: 20px;
+            background: var(--electric-cyan); left: 21px; top: 2px;
+            transform-origin: bottom;
+            border-radius: 2px;
+        }
+        .blade:nth-child(2) { transform: rotate(120deg); }
+        .blade:nth-child(3) { transform: rotate(240deg); }
+        
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .system-title { 
+            color: #ffffff; 
+            font-size: 1.3rem; 
+            margin: 0 0 5px 0; 
+            letter-spacing: 1px; 
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+        }
+
+        .header { 
+            color: var(--electric-cyan); 
+            margin-bottom: 25px; 
+            font-weight: bold; 
+            border-bottom: 1px solid #3e5266; 
+            padding-bottom: 12px; 
+            font-size: 0.85rem; 
+            letter-spacing: 2px;
+        }
+
+        .status-line { font-size: 0.85rem; margin: 12px 0; color: #fff; }
+        .value { color: var(--electric-cyan); font-weight: bold; float: right; }
+
+        hr { border: 0; border-top: 1px solid #3e5266; margin: 25px 0; }
+
+        .btn { 
+            background: #1a2634; 
+            border: 1px solid var(--electric-cyan); 
+            color: var(--electric-cyan); 
+            padding: 14px; 
+            width: 100%; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            font-weight: bold;
+            font-size: 0.8rem; 
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(0, 242, 255, 0.2);
+        }
+
+        .btn:hover { 
+            background: var(--electric-cyan); 
+            color: var(--bg-blue); 
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+        }
+
+        .hidden-hint { 
+            font-size: 0.65rem; 
+            color: #2c3e50; /* Very dim, hides against the panel color */
+            margin-top: 25px; 
+            text-align: center; 
+        }
+    </style>
 </head>
 <body>
-    <h1>changed login path</h1>
+
+    <div class="container">
+        <div class="turbine-box">
+            <div class="blades">
+                <div class="blade"></div>
+                <div class="blade"></div>
+                <div class="blade"></div>
+            </div>
+        </div>
+
+        <h1 class="system-title">Wind Turbine Control</h1>
+        <div class="header">RHODY_WINDS // CORE_NODE_04</div>
+        
+        <div class="status-line">System Load: <span class="value">34.2 MW</span></div>
+        <div class="status-line">Rotor Speed: <span class="value">14.1 RPM</span></div>
+        <div class="status-line">Brake Status: <span class="value" style="color: #ff4d4d;">DISENGAGED</span></div>
+        <div class="status-line">Network: <span class="value">ENCRYPTED</span></div>
+        
+        <hr>
+        
+        <form action="/system-diagnostics" method="POST">
+            <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 10px;">MAINTENANCE INTERFACE</p>
+            <button type="submit" class="btn">Initialize Remote Probe</button>
+        </form>
+
+        <div class="hidden-hint">
+            AUTH_ERR: METHOD_POST_NOT_SUPPORTED_FOR_DIAGNOSTICS
+        </div>
+    </div>
 </body>
 </html>

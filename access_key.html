@@ -1,24 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>RhodyWinds | Key Verification</title>
+    <meta charset="UTF-8">
+    <title>RhodyWinds | Key Verification (v2.1.0-1996)</title>
     <style>
-        body { background: #0a0a0b; color: #ffb81c; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .key-panel { border: 2px solid #ffb81c; padding: 40px; text-align: center; background: #1a1a1a; box-shadow: 0 0 20px rgba(255, 184, 28, 0.2); }
-        input { background: #000; border: 1px solid #ffb81c; color: #ffb81c; padding: 10px; font-size: 1.2rem; text-align: center; width: 80%; }
-        button { background: #ffb81c; color: #000; border: none; padding: 10px 20px; margin-top: 20px; font-weight: bold; cursor: pointer; }
+        body { 
+            background-color: #008080; /* Classic Win95 Teal */
+            color: #000;
+            font-family: "Times New Roman", Times, serif;
+            margin: 50px;
+        }
+
+        /* The classic 90s "Frame" look */
+        .key-panel { 
+            background-color: #c0c0c0; /* Standard Grey */
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            width: 450px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .marquee-header {
+            background-color: #000080; /* Windows Title Bar Blue */
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        h2 { 
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            color: #f00; /* Red for alert */
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .identity-badge {
+            border: 2px inset #fff;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #e0e0e0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        input { 
+            background-color: #fff;
+            border-top: 2px solid #808080;
+            border-left: 2px solid #808080;
+            border-right: 2px solid #dfdfdf;
+            border-bottom: 2px solid #dfdfdf;
+            padding: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+        /* Classic Beveled Button */
+        button { 
+            background-color: #c0c0c0;
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #000;
+            border-bottom: 2px solid #000;
+            padding: 5px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        button:active {
+            border-top: 2px solid #000;
+            border-left: 2px solid #000;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        .footer-code {
+            font-size: 12px;
+            margin-top: 20px;
+            border-top: 1px solid #808080;
+            padding-top: 10px;
+            text-align: left;
+        }
+
+        /* The mandatory 90s blink */
+        blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
+
+    <center>
+        <h1 style="color: #fff; font-family: Impact, sans-serif;">RHODY WINDS INTERNAL ACCESS</h1>
+    </center>
+
     <div class="key-panel">
-        <h2>LEVEL 5 KEY REQUIRED</h2>
-        <p>Identity Verified: Admin_Root</p>
-        <p>Please enter the 11-character hardware security key:</p>
-        <form action="/verify-key" method="POST">
-            <input type="text" name="access_key" placeholder="XX-XXXX-XXXX" required autofocus>
-            <br>
-            <button type="submit">UNLOCK GRID CONTROLS</button>
-        </form>
+        <div class="marquee-header">
+            <span>SECURE_LOGIN_v2.1</span>
+            <span>[X]</span>
+        </div>
+
+        <h2><blink>*** SECURITY ALERT ***</blink></h2>
+        
+        <div class="identity-badge">
+            STATUS: AUTHENTICATED AS [ADMIN_ROOT]
+        </div>
+        
+        <center>
+            <p>Please enter the 11-character hardware security key for <b>South Kingstown Grid Synchronization</b>.</p>
+            
+            <form action="/verify-key" method="POST">
+                <input type="text" name="access_key" placeholder="XX-XXXX-XXXX" required autofocus>
+                <br>
+                <button type="submit">UNLOCK GRID CONTROLS</button>
+            </form>
+        </center>
+
+        <div class="footer-code">
+            BUILD: 0991-A <br>
+            IP_LOGGING: ENABLED <br>
+            <font color="blue"><u>If you need technical support go to new AI (requires AOL 3.0)</u></font>
+        </div>
     </div>
+
+    <center>
+        <p style="color: #fff; margin-top: 20px;">
+            Best viewed in <b>Netscape Navigator 4.0</b> at 800x600 resolution.
+            <br>
+        </p>
+    </center>
+
 </body>
 </html>

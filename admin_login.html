@@ -2,78 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RhodyWinds | Admin Terminal</title>
     <style>
+        :root {
+            --bg-blue: #1a2634;
+            --panel-blue: #243447;
+            --electric-cyan: #00f2ff;
+            --alert-red: #ff4d4d;
+            --text-dim: #b0c4de;
+        }
+
         body {
-            background-color: #0d1117;
-            color: #f0f6fc;
-            font-family: 'Courier New', monospace;
+            background: var(--bg-blue);
+            background: radial-gradient(circle, #2c3e50 0%, #1a2634 100%);
+            color: var(--text-dim);
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
+
         .terminal {
             width: 400px;
-            background: #161b22;
-            border: 2px solid #30363d;
+            background: var(--panel-blue);
+            border: 1px solid #3e5266;
             border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 20px rgba(255, 77, 77, 0.1);
+            position: relative;
         }
+
+        /* Small spinning turbine indicator */
+        .turbine-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--electric-cyan);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: spin 5s linear infinite;
+        }
+        .turbine-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 2px; height: 12px;
+            background: var(--electric-cyan);
+            transform: translate(-50%, -100%);
+        }
+
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
         .header {
-            color: #f85149; /* Red Alert */
+            color: var(--alert-red);
             font-weight: bold;
+            font-size: 1.1rem;
             text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #3e5266;
+            padding-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
         }
-        label { display: block; margin-bottom: 5px; color: #8b949e; }
+
+        p { font-size: 0.85rem; text-align: center; margin-bottom: 25px; color: #fff; }
+
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            color: var(--electric-cyan); 
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
         input {
             width: 100%;
-            background: #0d1117;
-            border: 1px solid #30363d;
-            color: #58a6ff;
-            padding: 10px;
+            background: #1a2634;
+            border: 1px solid #3e5266;
+            color: #fff;
+            padding: 12px;
             margin-bottom: 20px;
             border-radius: 4px;
             box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
         }
+
+        input:focus {
+            border-color: var(--electric-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
         button {
             width: 100%;
-            background: #238636;
-            color: white;
-            border: none;
-            padding: 12px;
+            background: transparent;
+            color: var(--electric-cyan);
+            border: 1px solid var(--electric-cyan);
+            padding: 14px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            margin-top: 10px;
         }
-        button:hover { background: #2ea043; }
-        .system-msg { font-size: 0.75rem; color: #484f58; margin-top: 15px; text-align: center; }
+
+        button:hover {
+            background: var(--electric-cyan);
+            color: var(--bg-blue);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        }
+
+        .system-msg { 
+            font-size: 0.7rem; 
+            color: #4e6a85; 
+            margin-top: 25px; 
+            text-align: center; 
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
 
 <div class="terminal">
+    <div class="turbine-icon"></div>
     <div class="header">SYSTEM_OVERRIDE_GATE_01</div>
-    <p style="font-size: 0.9rem; margin-bottom: 20px;">Identity verification required for South Kingstown Grid Access.</p>
+    <p>Identity verification required for <br><strong>South Kingstown Grid Access</strong></p>
     
     <form action="/admin-login-phase1" method="POST">
         <label>ADMIN_ID:</label>
-        <input type="text" name="username" placeholder="Username" required autofocus>
+        <input type="text" name="username" placeholder="Enter UID..." required autofocus>
         
         <label>SECURE_PHRASE:</label>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" placeholder="••••••••" required>
         
         <button type="submit">INITIATE HANDSHAKE</button>
     </form>
 
     <div class="system-msg">
-        NODE: SK-RI-09 <br>
-        SECURITY: ENCRYPTED-RSA-4096
+        NODE: SK-RI-09 | PORT: 3000 <br>
+        SEC_LEVEL: 5 [RESTRICTED]
     </div>
 </div>
 
